@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product;
 
 
-class ParameterValue implements \Spameri\Elastic\Entity\IEntity
+class ParameterValue implements \Spameri\Elastic\Entity\EntityInterface
 {
 
 	/**

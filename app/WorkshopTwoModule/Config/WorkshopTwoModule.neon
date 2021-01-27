@@ -1,0 +1,37 @@
+# WorkshopTwoModule.neon
+services:
+	workshopTwo.workshopProductService:
+		factory: App\WorkshopTwoModule\Model\WorkshopProductService
+		arguments:
+			- %spameriElasticSearch.entities.WorkshopProduct.index%
+			- @workshopTwo.workshopProductFactory
+			- @workshopTwo.workshopProductCollectionFactory
+
+	workshopTwo.workshopProductConfig:
+		factory: App\WorkshopTwoModule\Entity\WorkshopProductConfig
+		arguments:
+			- %spameriElasticSearch.entities.WorkshopProduct.index%
+
+	workshopTwo.workshopProductFactory:
+		factory: App\WorkshopTwoModule\Factory\WorkshopProductFactory
+
+	workshopTwo.workshopProductCollectionFactory:
+		factory: App\WorkshopTwoModule\Factory\WorkshopProductCollectionFactory
+
+	workshopTwo.DataImport:
+		factory: App\WorkshopTwoModule\Model\ExportToElastic\DataImport
+
+	workshopTwo.DataProvider:
+		factory: App\WorkshopTwoModule\Model\ExportToElastic\DataProvider
+
+	workshopTwo.PrepareImportData:
+		factory: App\WorkshopTwoModule\Model\ExportToElastic\PrepareImportData
+
+	workshopTwo.ExportToElastic:
+		factory: App\WorkshopTwoModule\Model\ExportToElastic
+
+	workshopTwo.ExportToElasticCommand:
+		factory: App\WorkshopTwoModule\Command\ExportToElastic
+		tags:
+			- kdyby.console.command
+			- console.command

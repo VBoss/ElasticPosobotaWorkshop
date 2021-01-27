@@ -3,7 +3,7 @@
 namespace App\ProductModule\Factory;
 
 
-class ProductFactory implements \Spameri\Elastic\Factory\IEntityFactory
+class ProductFactory implements \Spameri\Elastic\Factory\EntityFactoryInterface
 {
 
 	/**

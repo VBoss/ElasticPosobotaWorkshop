@@ -32,7 +32,7 @@ class PrepareImportData implements \Spameri\Elastic\Import\PrepareImportDataInte
 			$existingProduct = $this->simpleProductService->getBy($query);
 			$elasticId = $existingProduct->id();
 
-		} catch (\Spameri\Elastic\Exception\ElasticSearchException $exception) {
+		} catch (\Spameri\Elastic\Exception\AbstractElasticSearchException $exception) {
 			$elasticId = new \Spameri\Elastic\Entity\Property\EmptyElasticId();
 		}
 
@@ -58,7 +58,7 @@ class PrepareImportData implements \Spameri\Elastic\Import\PrepareImportDataInte
 		$categories[] = \array_rand(\array_flip(Categories::VALUES));
 		$categories[] = \array_rand(\array_flip(Categories::VALUES));
 
-		return new \App\ProductModule\Entity\SimpleProduct(
+		return new \App\ProductModule\Entity\WorkshopProduct(
 			$elasticId,
 			(int) $entityData['id'],
 			$entityData['name'],
@@ -70,7 +70,7 @@ class PrepareImportData implements \Spameri\Elastic\Import\PrepareImportDataInte
 			$tags,
 			$categories,
 			$purpose,
-			0,
+			\random_int(0, 1000),
 			$brand
 		);
 	}

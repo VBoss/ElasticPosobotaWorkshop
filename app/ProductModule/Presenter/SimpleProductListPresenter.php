@@ -31,7 +31,7 @@ class SimpleProductListPresenter extends \App\Presenter\BasePresenter
 			// Doplnit kategorii - jen poslední zanoření
 			// Bude tam - značka
 
-		} catch (\Spameri\Elastic\Exception\ElasticSearchException $exception) {
+		} catch (\Spameri\Elastic\Exception\AbstractElasticSearchException $exception) {
 			$products = [];
 		}
 

@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product;
 
 
-class Details implements \Spameri\Elastic\Entity\IEntity
+class Details implements \Spameri\Elastic\Entity\EntityInterface
 {
 
 	/**

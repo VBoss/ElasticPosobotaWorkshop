@@ -6,27 +6,27 @@ class DataImport implements \Spameri\Elastic\Import\DataImportInterface
 {
 
 	/**
-	 * @var \App\ProductModule\Model\SimpleProductService
+	 * @var \App\ProductModule\Model\WorkshopProductService
 	 */
-	private $productService;
+	private $workshopProductService;
 
 
 	public function __construct(
-		\App\ProductModule\Model\SimpleProductService $productService
+		\App\ProductModule\Model\WorkshopProductService $workshopProductService
 	)
 	{
-		$this->productService = $productService;
+		$this->workshopProductService = $workshopProductService;
 	}
 
 
 	/**
-	 * @param \App\ProductModule\Entity\SimpleProduct $entity
+	 * @param \App\ProductModule\Entity\WorkshopProduct $entity
 	 */
 	public function import(
 		\Spameri\Elastic\Entity\AbstractImport $entity
 	): \Spameri\Elastic\Import\ResponseInterface
 	{
-		$id = $this->productService->insert($entity);
+		$id = $this->workshopProductService->insert($entity);
 
 		return new \Spameri\Elastic\Import\Response\SimpleResponse(
 			$id,

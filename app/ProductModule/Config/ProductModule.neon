@@ -48,3 +48,23 @@ services:
 	simpleProductPrepareImportData:
 		class: App\ProductModule\Model\ExportToElastic\PrepareImportData
 
+### WorkshopProduct
+
+	workshopProductService:
+		factory: App\ProductModule\Model\WorkshopProductService
+		arguments:
+			- %spameriElasticSearch.entities.WorkshopProduct.index%
+			- @workshopProductFactory
+			- @workshopProductCollectionFactory
+
+	workshopProductConfig:
+		factory: App\ProductModule\Entity\WorkshopProductConfig
+		arguments:
+			- %spameriElasticSearch.entities.WorkshopProduct.index%
+
+	workshopProductFactory:
+		factory: App\ProductModule\Factory\WorkshopProductFactory
+
+	workshopProductCollectionFactory:
+		factory: App\ProductModule\Factory\WorkshopProductCollectionFactory
+

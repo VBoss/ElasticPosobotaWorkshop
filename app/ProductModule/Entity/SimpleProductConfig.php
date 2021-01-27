@@ -74,10 +74,14 @@ class SimpleProductConfig implements \Spameri\Elastic\Settings\IndexConfigInterf
 		);
 		$settings->addAnalyzer($edgeNgram);
 
-		$worldSplit = new \Spameri\ElasticQuery\Mapping\Analyzer\Custom\WordDelimiter($stopFilter);
+		$worldSplit = new \Spameri\ElasticQuery\Mapping\Analyzer\Custom\WordDelimiter(
+			$stopFilter
+		);
 		$settings->addAnalyzer($worldSplit);
 
-		$worldJoin = new \Spameri\ElasticQuery\Mapping\Analyzer\Custom\CommonGrams($stopWords);
+		$worldJoin = new \Spameri\ElasticQuery\Mapping\Analyzer\Custom\CommonGrams(
+			$stopWords
+		);
 		$settings->addAnalyzer($worldJoin);
 
 		// ===== FIELDS =====

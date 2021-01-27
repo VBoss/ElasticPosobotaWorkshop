@@ -1,0 +1,8 @@
+spameriElasticSearch:
+	entities:
+		WorkshopProduct:
+			index: workshop_product
+			dynamic: strict
+			config: @workshopProductConfig
+
+			properties:

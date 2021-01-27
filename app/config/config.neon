@@ -14,7 +14,6 @@ dibi:
 
 spameriElasticSearch:
 	debug: true
-	entities:
 
 parameters:
 
@@ -32,7 +31,16 @@ session:
 services:
 	router: App\RouterFactory::createRouter
 
+#	Uncomment this if you want to log export to elasctic
+#	- Spameri\Elastic\Import\Run\LoggerHandler(@monolog.logger)
+
+
 includes:
+	- ../ProductModule/Config/ProductModule.neon
+
 	- ../ProductModule/Config/Product.neon
 	- ../ProductModule/Config/SimpleProduct.neon
-	- ../ProductModule/Config/ProductModule.neon
+	- ../ProductModule/Config/WorkshopProduct.neon
+
+	- ../WorkshopTwoModule/Config/WorkshopTwoModule.neon
+	- ../WorkshopTwoModule/Config/WorkshopProduct.neon

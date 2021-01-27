@@ -1,0 +1,110 @@
+{block content}
+	<div id="banner">
+		<h1 n:block=title>Workshop</h1>
+	</div>
+
+	<div id="outer-wrap">
+		{form searchForm}
+			<div class="ca-box" id="search-box-ca-box-0" aria-hidden="true" style="margin-top: 40px">
+				<p class="reset">
+					<input n:name="queryString" type="text" class="inp-text suggest" autocomplete="off" style="width: 60%">
+
+					<button n:name="search" class="btn btn-blue" type="submit"><span>Search</span></button>
+				</p>
+			</div>
+		{/form}
+		<h2>You have searched: {$queryString}</h2>
+
+		<div n:if="$products" class="parameters">
+			<ul n:if="$products->aggregations()->getAggregation('price')" class="prices">
+                {foreach $products->aggregations()->getAggregation('price')->buckets() as $priceBucket}
+					<li>
+						<a n:href="this priceFrom => $priceBucket->from(), priceTo => $priceBucket->to()">
+							{$priceBucket->key()}
+							(
+								{if  $priceBucket->from() != $priceFrom}+{/if}
+								{$priceBucket->docCount()}
+							)
+						</a>
+					</li>
+                {/foreach}
+			</ul>
+			<hr>
+			<ul n:if="$products->aggregations()->getAggregation('categories')" class="category">
+                {foreach $products->aggregations()->getAggregation('categories')->buckets() as $categoryBucket}
+					<li>
+						<a n:href="this category => $categoryBucket->key()">
+							{$categoryBucket->key()}
+							({$categoryBucket->docCount()})
+						</a>
+					</li>
+					{breakIf $iterator->getCounter() > 5}
+                {/foreach}
+			</ul>
+			<hr>
+			<ul n:if="$products->aggregations()->getAggregation('brands')" class="brand">
+                {foreach $products->aggregations()->getAggregation('brands')->buckets() as $brandBucket}
+					<li>
+						<a n:href="this brand => $brandBucket->key()">
+							{$brandBucket->key()}
+							({$brandBucket->docCount()})
+						</a>
+					</li>
+                    {breakIf $iterator->getCounter() > 5}
+                {/foreach}
+			</ul>
+		</div>
+
+		<div class="product-list products-list-full">
+			<ul class="reset products full-products">
+			{foreach $products as $product}
+				<li>
+					<div class="spc">
+						<a href="//benu.cz/{$product->getAlias()}" class="detail" style="height: 321px">
+							<h2 class="title">
+								<span class="img">
+									<img class="lazy lazy-loaded" src="{$product->getImage()}" width="180" height="156" alt="{$product->getName()}">
+								</span>
+								<span class="name" style="height: 48px;">{$product->getName()|truncate:40}</span>
+							</h2>
+
+							<ul n:if="$product->getTags()" class="reset tags">
+								{foreach $product->getTags() as $tag}
+									<li class="action">{$tag}</li>
+								{/foreach}
+							</ul>
+
+							<ul n:if="$product->getPurpose()" class="purpose">
+								{foreach $product->getPurpose() as $purpose}
+									<li>{$purpose}</li>
+								{/foreach}
+							</ul>
+						</a>
+						<form class="shop-box" action="//benu.cz/vyhledavani" method="post" id="frm-productBox-{$product->getDatabaseId()}-buyBoxForm" style="height: 73px;">
+							<div class="in" style="height: 61px;">
+								<div class="av-price">
+									<p n:class="$product->getAvailability() === 'Skladem' ? green : red">
+										{$product->getAvailability()}
+									</p>
+									<p class="price" title="Cena platná pro internetovou objednávku">
+
+										<strong>
+											{$product->getPrice()}&nbsp;Kč
+										</strong>
+										<span class="internet-price"></span>
+
+									</p>
+								</div>
+								<p class="buy" data-action="buy">
+									<button class="btn js-pdbox ajax" type="submit" name="addToBasket" value="Do košíku">Koupit</button>
+								</p>
+							</div>
+							<input type="hidden" name="_do" value="productBox-{$product->getDatabaseId()}-buyBoxForm-submit"><!--[if IE]><input type=IEbug disabled style="display:none"><![endif]-->
+						</form>
+					</div>
+				</li>
+			{/foreach}
+			</ul>
+		</div>
+	</div>
+{/block}

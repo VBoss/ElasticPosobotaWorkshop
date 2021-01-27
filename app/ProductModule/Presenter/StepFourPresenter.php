@@ -27,7 +27,7 @@ class StepFourPresenter extends \App\Presenter\BasePresenter
 		try {
 			$products = $this->productService->getAllBy($query);
 
-		} catch (\Spameri\Elastic\Exception\ElasticSearchException $exception) {
+		} catch (\Spameri\Elastic\Exception\AbstractElasticSearchException $exception) {
 			$products = [];
 		}
 

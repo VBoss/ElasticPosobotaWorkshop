@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product;
 
 
-class IsPublic implements \Spameri\Elastic\Entity\IValue
+class IsPublic implements \Spameri\Elastic\Entity\ValueInterface
 {
 
 	/**

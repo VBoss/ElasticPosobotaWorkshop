@@ -1,0 +1,10 @@
+# WorkshopProduct.neon
+
+spameriElasticSearch:
+	entities:
+		WorkshopProduct:
+			index: workshop_product
+			dynamic: strict
+			config: @workshopTwo.workshopProductConfig
+
+			properties:

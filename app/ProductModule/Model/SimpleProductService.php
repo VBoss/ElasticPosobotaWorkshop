@@ -3,7 +3,7 @@
 namespace App\ProductModule\Model;
 
 
-class SimpleProductService extends \Spameri\Elastic\Model\BaseService
+class SimpleProductService extends \Spameri\Elastic\Model\AbstractBaseService
 {
 
 }

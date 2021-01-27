@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product\Details;
 
 
-class Tag implements \Spameri\Elastic\Entity\IValue
+class Tag implements \Spameri\Elastic\Entity\ValueInterface
 {
 
 	/**

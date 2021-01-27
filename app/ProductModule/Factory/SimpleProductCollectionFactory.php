@@ -3,14 +3,14 @@
 namespace App\ProductModule\Factory;
 
 
-class SimpleProductCollectionFactory implements \Spameri\Elastic\Factory\ICollectionFactory
+class SimpleProductCollectionFactory implements \Spameri\Elastic\Factory\CollectionFactoryInterface
 {
 
 	public function create(
-		\Spameri\Elastic\Model\IService $service
+		\Spameri\Elastic\Model\ServiceInterface $service
 		, array $elasticIds = []
-		, \Spameri\Elastic\Entity\IElasticEntity ... $entityCollection
-	) : \Spameri\Elastic\Entity\IElasticEntityCollection
+		, \Spameri\Elastic\Entity\ElasticEntityInterface ... $entityCollection
+	) : \Spameri\Elastic\Entity\ElasticEntityCollectionInterface
 	{
 		return new \App\ProductModule\Entity\ProductCollection($service, $elasticIds, ... $entityCollection);
 	}

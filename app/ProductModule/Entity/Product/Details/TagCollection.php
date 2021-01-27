@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product\Details;
 
 
-class TagCollection implements \Spameri\Elastic\Entity\IValueCollection
+class TagCollection implements \Spameri\Elastic\Entity\ValueCollectionInterface
 {
 
 	/**

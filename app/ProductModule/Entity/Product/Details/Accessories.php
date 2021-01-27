@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product\Details;
 
 
-class Accessories extends \Spameri\Elastic\Entity\Collection\ElasticEntityCollection
+class Accessories extends \Spameri\Elastic\Entity\Collection\AbstractElasticEntityCollection
 {
 
 }

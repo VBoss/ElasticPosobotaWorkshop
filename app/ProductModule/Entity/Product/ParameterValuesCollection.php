@@ -3,7 +3,7 @@
 namespace App\ProductModule\Entity\Product;
 
 
-class ParameterValuesCollection extends \Spameri\Elastic\Entity\Collection\EntityCollection
+class ParameterValuesCollection extends \Spameri\Elastic\Entity\Collection\AbstractEntityCollection
 {
 
 

@@ -3,11 +3,11 @@
 namespace App\ProductModule\Entity;
 
 
-class Product implements \Spameri\Elastic\Entity\IElasticEntity
+class Product implements \Spameri\Elastic\Entity\ElasticEntityInterface
 {
 
 	/**
-	 * @var \Spameri\Elastic\Entity\Property\IElasticId
+	 * @var \Spameri\Elastic\Entity\Property\ElasticIdInterface
 	 */
 	private $id;
 
@@ -43,7 +43,7 @@ class Product implements \Spameri\Elastic\Entity\IElasticEntity
 
 
 	public function __construct(
-		\Spameri\Elastic\Entity\Property\IElasticId $id
+		\Spameri\Elastic\Entity\Property\ElasticIdInterface $id
 		, \App\ProductModule\Entity\Product\IsPublic $isPublic
 		, \App\ProductModule\Entity\Product\Name $name
 		, \App\ProductModule\Entity\Product\Content $content
@@ -62,7 +62,7 @@ class Product implements \Spameri\Elastic\Entity\IElasticEntity
 	}
 
 
-	public function id(): \Spameri\Elastic\Entity\Property\IElasticId
+	public function id(): \Spameri\Elastic\Entity\Property\ElasticIdInterface
 	{
 		return $this->id;
 	}
